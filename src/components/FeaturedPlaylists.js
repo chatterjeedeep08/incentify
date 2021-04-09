@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import CardMedia from '@material-ui/core/CardMedia';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,8 +38,23 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 12,
     },
     content: {
-      padding: '8px'
-    }
+      padding: '8px',
+      flex: '1 0 auto',
+    },
+    controls: {
+      //display: 'flex',
+      alignItems: 'center',
+      //width: 50,
+      paddingLeft: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
+    },
+    details: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    cover: {
+      width: 151
+    },
   }));
   
 
@@ -62,15 +80,25 @@ export default function MotiQuote() {
       // }
   
   return(<div className={classes.root}>
-      <GridList cellHeight={160} className={classes.gridList} cols={1}>
-        {quote.map((item) => (
+      <GridList container spacing={2} cellHeight={160} className={classes.gridList} cols={1}>
+        {quote ? (quote.map((item) => (
         <Card className={classes.rootCard}>
+          <div className={classes.details}>
           <CardContent className={classes.content}>
-            <Typography className={classes.title} gutterBottom>
-              <i><q>{item.text ? (item.text) : "Loading..."}</q></i>
+            <Typography component="h5" variant="h5">
+            {item.text ? (item.text) : "Loading..."}
             </Typography>
           </CardContent>
-        </Card>))} 
+            <Button variant="outlined" color="primary" className={classes.controls}>
+              <AddIcon fontSize="large" color="primary"/>
+            </Button>
+          </div>
+          <CardMedia
+            className={classes.cover}
+            image="https://cdn.dribbble.com/users/31348/screenshots/5383318/aid_vinyl_19_4x.jpg"
+            title="album cover"
+          />
+        </Card>))) : "Loading"} 
       </GridList>
     </div>);
 }
