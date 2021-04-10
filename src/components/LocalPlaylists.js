@@ -63,7 +63,7 @@ export default function MotiQuote() {
   let image_URL = {uri:'https://cdn.dribbble.com/users/31348/screenshots/5383318/aid_vinyl_19_4x.jpg'};
 
   useEffect(() => {
-    fetch("	https://api.spotify.com/v1/browse/featured-playlists")
+    fetch("https://type.fit/api/quotes")
       .then(response => response.json())
       .then(json => {
       console.log("json")
@@ -77,7 +77,7 @@ export default function MotiQuote() {
   
   return(<div className={classes.root}>
       <GridList container spacing={2} cellHeight={160} className={classes.gridList} cols={1}>
-        {/* {quote ? (quote.map((item) => (
+        {quote ? (quote.map((item) => (
         <Card className={classes.rootCard}>
           <div className={classes.details}>
           <CardContent className={classes.content}>
@@ -94,7 +94,7 @@ export default function MotiQuote() {
             image= {classes.cover}
             title="album cover"
           />
-        </Card>))) : "Loading"}  */}
+        </Card>))) : "Loading"} 
       </GridList>
     </div>);
 }
